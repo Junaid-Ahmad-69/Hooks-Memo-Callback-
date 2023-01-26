@@ -1,36 +1,30 @@
-import React, {useState, useMemo} from 'react'
-import ChildMemo from "../Child/ChildMemo";
+import React, {useState, useMemo} from 'react';
 
 const Memo = () => {
+    const [memoCount, setMemoCount] = useState(0);
+    const [memoCounter, setMemoCounter] = useState(0);
 
-    const [meme, setMemo] = useState(0)
-    const [todo, setTodo] = useState([]);
-
-
-    const changeMemo = () => {
-        setMemo(meme + 1);
+    const changeHandlerCount = () => {
+        setMemoCount(memoCount + 1);
+    }
+    const changeHandlerCounter = () => {
+        setMemoCounter(memoCounter + 1);
     }
 
-    const changeTodo = () => {
-        setTodo(prevState => [...prevState, `New Memo`]);
-    }
-    const expensiveCalculation = useMemo(() => (num) => {
-        // console.log("Calculating...", {meme});
-        for (let i = 0; i < 10; i++) {
-            num += 1;
-        }
-        return num;
-    }, [meme]);
 
+    const isEven = useMemo( () => {
+        let i=0;
+      while ( i<1000000000) i++
+        return memoCount % 2 === 0;
+    },[memoCount]);
 
     return (
-        <>
-            <ChildMemo todo={todo} memo={changeTodo} fun={expensiveCalculation(meme)}/>
-            <button onClick={changeMemo}>Click Memo {}</button>
-        </>
-    )
-
-
+        <div>
+            <button onClick={changeHandlerCount}>Count 1 - {memoCount} </button>
+            <p>Count 1 Value : is {isEven ? "Even" : "Old"}</p>
+            <button onClick={changeHandlerCounter}>Counter 2 - {memoCounter}</button>
+        </div>
+    );
 }
 
-export default Memo
+export default Memo;

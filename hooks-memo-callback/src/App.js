@@ -10,9 +10,6 @@ const test = () => {
 };
 
 
-
-
-
 const Parent = () => {
     const [count, setCount] = useState(0);
     const [count1, setCount1] = useState(0);
@@ -35,13 +32,12 @@ const Parent = () => {
     )
 }
 
-
 const App = () => {
     return (
         <>
             <Parent/>
             <CallBack/>
-            {/*<Memo/>*/}
+            <Memo/>
         </>
     )
 }
