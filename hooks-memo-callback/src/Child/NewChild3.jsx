@@ -8,5 +8,4 @@ const Child2 = () => {
         </div>
     )
 }
-
 export default React.memo(Child2)

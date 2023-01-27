@@ -4,6 +4,7 @@ import CallBack from "./HookCallBack/CallBack";
 import ChildMemo from "./Child/ChildMemo";
 import Memo from "./HookMemo/Memo";
 import Child2 from "./Child/NewChild3";
+import Ref from "./HookUseRef/Ref";
 
 const test = () => {
     return 'Hello from';
@@ -38,6 +39,7 @@ const App = () => {
             <Parent/>
             <CallBack/>
             <Memo/>
+            <Ref/>
         </>
     )
 }
