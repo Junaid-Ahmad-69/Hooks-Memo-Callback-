@@ -5,6 +5,7 @@ import ChildMemo from "./Child/ChildMemo";
 import Memo from "./HookMemo/Memo";
 import Child2 from "./Child/NewChild3";
 import Ref from "./HookUseRef/Ref";
+import HookLayoutEffect from "./HookLayoutEffect/HookLayoutEffect";
 
 const test = () => {
     return 'Hello from';
@@ -40,6 +41,8 @@ const App = () => {
             <CallBack/>
             <Memo/>
             <Ref/>
+            <HookLayoutEffect/>
+
         </>
     )
 }

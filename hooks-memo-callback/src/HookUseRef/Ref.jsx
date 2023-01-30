@@ -1,12 +1,14 @@
 import React, {useState, useRef, useEffect} from 'react'
 import ChildRef from "../Child/ChildRef";
+import HookRefBg from "./HookRefBg";
 
 const Ref = () => {
     const [counter, setCounter] = useState(0);
     const [inputValue, setInputValue] = useState("");
-    console.log("render")
+
     const reference = useRef(0)
-    const elementRef = useRef();
+    const reference_2 = useRef(0)
+    const elementRef = useRef(null);
     const prevElement = useRef()
 
 
@@ -17,18 +19,25 @@ const Ref = () => {
 
     }
 
+    const handler2 = () => {
+        reference_2.current++;
+        console.log(`Clicked ${reference_2.current} times`);
+
+    }
+
 // Using Ref working with Dom Interaction 
     const focusInput = () => {
         elementRef.current.focus();
+        console.log("render")
     };
 
 
     // Using Ref Hook we store previous state
-    // useEffect(() => {
-    //     return () => {
-    //         prevElement.current = inputValue;
-    //     };
-    // }, [inputValue]);
+    useEffect(() => {
+        return () => {
+            prevElement.value = inputValue;
+        };
+    }, [inputValue]);
 
 
     console.log(`I am render`)
@@ -43,16 +52,18 @@ const Ref = () => {
             <button onClick={() => setCounter(prevState => prevState + 1)}> Button Click {counter}</button>
 
 
-            <ChildRef ref={prevElement} type="text"  onChange={(e) => {
-                setInputValue(e.target.value)
-            }}/>
+            {/*<ChildRef type="text"  onChange={(e) => {*/}
+            {/*    setInputValue(e.target.value)*/}
+            {/*}}/>*/}
+
+            <ChildRef type="text" ref={elementRef} onClick={focusInput} ref_2={reference_2}/>
             {/*<input onChange={(e)=>setInputValue(e.target.value)} value={inputValue}/>*/}
             <section>
                 <h2> Current Value : {inputValue}</h2>
-                <p> Previous Value : {prevElement.current}</p>
-
+                <p> Previous Value : {prevElement.value}</p>
             </section>
 
+            <HookRefBg/>
 
         </>
     )
